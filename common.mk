@@ -24,6 +24,9 @@
 
 $(call inherit-product, vendor/oneplus/msm8998-common/msm8998-common-vendor.mk)
 
+# To set CAF version
+$(call inherit-product, vendor/citrus/config/common_la.um.mk)
+
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
@@ -264,10 +267,6 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service \
     lights.msm8998
 
-# LiveDisplay native
-PRODUCT_PACKAGES += \
-    libjni_livedisplay
-
 # Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
@@ -325,7 +324,9 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.1-service-qti
+    power.msm8998 \
+    android.hardware.power@1.0-service \
+    android.hardware.power@1.0-impl
 
 # Low power Whitelist
 PRODUCT_COPY_FILES += \
@@ -334,13 +335,6 @@ PRODUCT_COPY_FILES += \
 # QMI
 PRODUCT_PACKAGES += \
     libjson
-
-# RCS
-PRODUCT_PACKAGES += \
-    rcs_service_aidl \
-    rcs_service_aidl.xml \
-    rcs_service_api \
-    rcs_service_api.xml
 
 # Recovery
 PRODUCT_PACKAGES += \
@@ -355,14 +349,11 @@ PRODUCT_PACKAGES += \
     android.hardware.broadcastradio@1.0-impl \
     ims-ext-common \
     librmnetctl \
-    libxml2 \
-    libprotobuf-cpp-full \
-    telephony-ext
+    libxml2
 
 PRODUCT_BOOT_JARS += \
     qcnvitems \
-    qcrilhook \
-    telephony-ext
+    qcrilhook
 
 # Seccomp policy
 PRODUCT_COPY_FILES += \
@@ -398,7 +389,7 @@ PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
     android.hardware.vibrator@1.0-service
 
-# VNDK-SP:
+# VNDK-SP
 PRODUCT_PACKAGES += \
     vndk-sp
 

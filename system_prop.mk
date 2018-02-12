@@ -219,3 +219,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Wi-Fi
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
+
+# Maintainer
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.citrus.maintainer=Sathish K
